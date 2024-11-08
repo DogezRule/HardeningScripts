@@ -8,7 +8,8 @@ This repository contains shell scripts for hardening an Ubuntu system by configu
 This script configures and enables the Uncomplicated Firewall (UFW) on the system. It includes:
 - Enabling the UFW firewall.
 - Setting default rules to deny incoming connections and allow outgoing ones.
-- Allowing SSH on the default port (port 22).
+- Allowing SSH on the default port (port 22) (If wanted only).
+- Asks if you want any more services enabled or disabled.
 - Enabling logging for monitoring purposes.
 
 ### 2. `passwd.sh`
