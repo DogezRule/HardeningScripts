@@ -1,12 +1,27 @@
 #!/bin/bash
 
-# Description: Verifies user accounts and their admin status based on input.
+# Description: Verifies user accounts and their admin status based on input from two separate files.
 
 echo "Starting user verification script..."
 
-# Prompting for admin and regular users
-read -p "Enter the expected admin users (separate with spaces): " -a expected_admin_users
-read -p "Enter the expected regular users (separate with spaces): " -a expected_regular_users
+# Define paths for the temporary files
+admin_file="admin_temp.txt"
+users_file="users_temp.txt"
+
+# Prompt to open the files in Nano
+echo "Please enter the usernames in two separate files:"
+echo "- Admin users: One username per line in $admin_file."
+echo "- Regular users: One username per line in $users_file."
+echo "Each file will now open for you to paste the lists. Save and close the files after pasting (Ctrl+O, Enter, then Ctrl+X in Nano)."
+
+# Create and open the files in Nano
+touch "$admin_file" "$users_file"
+nano "$admin_file"
+nano "$users_file"
+
+# Read the files into arrays
+mapfile -t expected_admin_users < "$admin_file"
+mapfile -t expected_regular_users < "$users_file"
 
 # Function to check if a user exists on the system
 function user_exists() {
